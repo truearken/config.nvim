@@ -16,5 +16,5 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
   spec = "arken.plugins",
-  checker = { enabled = true },
+  checker = { enabled = false },
 })
