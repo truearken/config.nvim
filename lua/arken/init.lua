@@ -43,7 +43,9 @@ autocmd('LspAttach', {
         map('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols)
         map('<leader>rn', vim.lsp.buf.rename)
         map('<leader>ca', vim.lsp.buf.code_action, { 'n', 'x' })
-        map('ge', vim.diagnostic.goto_next)
+        map('<C-h>', vim.lsp.buf.signature_help, { 'i' })
+        map('#', vim.diagnostic.goto_next)
+        map([[']], vim.diagnostic.goto_prev)
     end
 })
 

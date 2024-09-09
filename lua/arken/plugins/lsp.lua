@@ -27,9 +27,9 @@ return {
         require("mason-lspconfig").setup({
             ensure_installed = {
                 "lua_ls",
-                "rust_analyzer",
                 "gopls",
-                "ts_ls"
+                "ts_ls",
+                "clangd"
             },
             handlers = {
                 function(server_name) -- default handler (optional)
@@ -67,7 +67,7 @@ return {
                 ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
                 ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
                 ['<C-z>'] = cmp.mapping.confirm({ select = true }),
-                ["<C-Space>"] = cmp.mapping.complete(),
+                ['<C-Space>'] = cmp.mapping.complete(),
             }),
             sources = cmp.config.sources({
                 { name = 'nvim_lsp' },
