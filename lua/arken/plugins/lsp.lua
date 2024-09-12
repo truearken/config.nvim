@@ -29,7 +29,8 @@ return {
                 "lua_ls",
                 "gopls",
                 "ts_ls",
-                "clangd"
+                "clangd",
+                "lemminx"
             },
             handlers = {
                 function(server_name) -- default handler (optional)
