@@ -8,25 +8,12 @@ local arken_group = autogrp("arken", {})
 local autocmd = vim.api.nvim_create_autocmd
 local yank_group = autogrp("HighlightYank", {})
 
-function R(name)
-    require("plenary.reload").reload_module(name)
-end
-
 autocmd("TextYankPost", {
     group = yank_group,
     pattern = "*",
     callback = function()
-        vim.highlight.on_yank({
-            higroup = "IncSearch",
-            timeout = 40,
-        })
+        vim.highlight.on_yank()
     end,
-})
-
-autocmd({"BufWritePre"}, {
-    group = arken_group,
-    pattern = "*",
-    command = [[%s/\s\+$//e]],
 })
 
 autocmd("LspAttach", {
@@ -44,7 +31,7 @@ autocmd("LspAttach", {
         map("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols)
         map("<leader>rn", vim.lsp.buf.rename)
         map("<leader>ca", vim.lsp.buf.code_action, { "n", "x" })
-        map("<C-h>", vim.lsp.buf.signature_help, { "i" })
+        map("<C-k>", vim.lsp.buf.signature_help, { "i" })
         map("#", vim.diagnostic.goto_next)
         map([[']], vim.diagnostic.goto_prev)
     end
