@@ -14,18 +14,21 @@ vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
 -- yank to system clipboard
-vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
-vim.keymap.set({"n", "v"}, "<leader>Y", [["+Y]])
+vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
+vim.keymap.set({ "n", "v" }, "<leader>Y", [["+Y]])
 
---tmux conf
+-- ctrl+v pastes from my system clipboard
+vim.keymap.set({ "n", "v" }, "<C-b>", "<C-v>")
+
+-- tmux conf
 vim.keymap.set("n", "<C-h>", ":wincmd h<CR>")
 vim.keymap.set("n", "<C-j>", ":wincmd j<CR>")
-vim.keymap.set("n", "<C-k>", ":wincmd k<CR>")
 vim.keymap.set("n", "<C-l>", ":wincmd l<CR>")
+vim.keymap.set("n", "<C-k>", ":wincmd k<CR>")
+
+-- comment
+vim.keymap.set("v", "<leader>ci", "_<C-v>I// <Esc>")
+vim.keymap.set("v", "<leader>cr", [[: s/\/\/ //<CR>]])
 
 -- prime convinced me
-vim.keymap.set(
-    "n",
-    "<leader>ee",
-    "oif err != nil {<CR>}<Esc>Oreturn err<Esc>"
-)
+vim.keymap.set("n", "<leader>ee", "oif err != nil {<CR>}<Esc>Oreturn err<Esc>")
