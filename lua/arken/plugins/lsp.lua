@@ -86,6 +86,12 @@ return {
 		})
 
 		require("conform").setup({
+			formatters_by_ft = {
+				lua = { "stylua" },
+				go = { "goimports" },
+				javascript = { "prettier" },
+				typescript = { "prettier" },
+			},
 			format_on_save = function(bufnr)
 				local disable_filetypes = { c = true, cpp = true }
 				local lsp_format_opt
@@ -99,11 +105,6 @@ return {
 					lsp_format = lsp_format_opt,
 				}
 			end,
-			formatters_by_ft = {
-				lua = { "stylua" },
-				go = { "goimports" },
-				javascript = { "prettierd", "prettier", stop_after_first = true },
-			},
 		})
 		vim.keymap.set("n", "<leader>f", function()
 			require("conform").format({ async = true, lsp_format = "fallback" })
