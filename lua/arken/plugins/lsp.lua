@@ -37,7 +37,6 @@ return {
 				"lua_ls",
 				"gopls",
 				"ts_ls",
-				"clangd",
 				"lemminx",
 			},
 			handlers = {
