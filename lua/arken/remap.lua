@@ -30,5 +30,8 @@ vim.keymap.set("n", "<C-k>", ":wincmd k<CR>")
 vim.keymap.set("v", "<leader>ci", "_<C-v>I// <Esc>")
 vim.keymap.set("v", "<leader>cr", [[: s/\/\/ //<CR>]])
 
+-- marks
+vim.keymap.set({ "n", "v" }, "-", "'")
+
 -- prime convinced me
 vim.keymap.set("n", "<leader>ee", "oif err != nil {<CR>}<Esc>Oreturn err<Esc>")
