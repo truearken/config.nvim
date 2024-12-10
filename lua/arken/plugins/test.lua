@@ -17,7 +17,12 @@ return {
 		neotest.setup({
 			adapters = {
 				require("neotest-go")({
-					args = { "-coverprofile=" .. vim.fn.getcwd() .. "/coverage.out" },
+					args = {
+						"-coverpkg=`go mod edit -print | head -1 | sed -e 's/^\\w*\\ *//'`/... "
+							.. "-coverprofile="
+							.. vim.fn.getcwd()
+							.. "/coverage.out",
+					},
 				}),
 			},
 		})
