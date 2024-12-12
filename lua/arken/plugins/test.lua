@@ -11,7 +11,14 @@ return {
 		"andythigpen/nvim-coverage",
 	},
 	config = function()
-		require("coverage").setup()
+		require("coverage").setup({
+			auto_reload = true,
+			lang = {
+				go = {
+					coverage_file = "/tmp/coverage.out",
+				},
+			},
+		})
 
 		local neotest = require("neotest")
 		neotest.setup({
@@ -19,9 +26,7 @@ return {
 				require("neotest-go")({
 					args = {
 						"-coverpkg=`go mod edit -print | head -1 | sed -e 's/^\\w*\\ *//'`/... "
-							.. "-coverprofile="
-							.. vim.fn.getcwd()
-							.. "/coverage.out",
+							.. "-coverprofile=/tmp/coverage.out",
 					},
 				}),
 			},
