@@ -32,22 +32,24 @@ return {
 				"goimports",
 			},
 		})
+
+		local lspconfig = require("lspconfig")
 		require("mason-lspconfig").setup({
 			ensure_installed = {
 				"lua_ls",
 				"gopls",
 				"ts_ls",
 				"lemminx",
+				"yamlls",
 			},
 			handlers = {
 				function(server_name) -- default handler (optional)
-					require("lspconfig")[server_name].setup({
+					lspconfig[server_name].setup({
 						capabilities = capabilities,
 					})
 				end,
 
 				["lua_ls"] = function()
-					local lspconfig = require("lspconfig")
 					lspconfig.lua_ls.setup({
 						capabilities = capabilities,
 						settings = {
@@ -55,6 +57,18 @@ return {
 								runtime = { version = "Lua 5.1" },
 								diagnostics = {
 									globals = { "bit", "vim", "it", "describe", "before_each", "after_each" },
+								},
+							},
+						},
+					})
+				end,
+
+				["yamlls"] = function()
+					lspconfig.yamlls.setup({
+						settings = {
+							yaml = {
+								schemas = {
+									kubernetes = "*.yaml",
 								},
 							},
 						},

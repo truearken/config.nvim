@@ -17,7 +17,6 @@ vim.keymap.set("n", "N", "Nzzzv")
 
 -- yank to system clipboard
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
-vim.keymap.set({ "n", "v" }, "<leader>Y", [["+Y]])
 
 -- ctrl+v pastes from my system clipboard
 vim.keymap.set({ "n", "v" }, "<C-b>", "<C-v>")
@@ -32,5 +31,6 @@ vim.keymap.set("n", "<C-k>", ":wincmd k<CR>")
 vim.keymap.set("v", "<leader>ci", "_<C-v>I// <Esc>")
 vim.keymap.set("v", "<leader>cr", [[: s/\/\/ //<CR>]])
 
--- prime convinced me
-vim.keymap.set("n", "<leader>ee", "oif err != nil {<CR>}<Esc>Oreturn err<Esc>")
+-- some go keybinds
+vim.keymap.set("n", "<leader>ee", "oif err != nil {<CR>}<Esc>Oreturn err<Esc>") -- i stole this from prime
+vim.keymap.set("n", "<leader>ei", "ddkIif <Esc>A; err != nil {<Esc>")
