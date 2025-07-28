@@ -32,3 +32,7 @@ vim.opt.splitbelow = true
 
 vim.opt.colorcolumn = "100"
 vim.opt.updatetime = 50
+
+vim.diagnostic.config({
+	virtual_text = true,
+})
