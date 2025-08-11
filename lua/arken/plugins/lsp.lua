@@ -13,6 +13,7 @@ return {
 		"saadparwaiz1/cmp_luasnip",
 		"j-hui/fidget.nvim",
 		"stevearc/conform.nvim",
+		"mfussenegger/nvim-jdtls",
 	},
 	config = function()
 		local cmp = require("cmp")
@@ -41,6 +42,7 @@ return {
 				"ts_ls",
 				"lemminx",
 				"yamlls",
+				"jdtls",
 			},
 			handlers = {
 				function(server_name) -- default handler (optional)
