@@ -4,13 +4,6 @@ return {
 		"nvim-neotest/nvim-nio",
 		"nvim-lua/plenary.nvim",
 		"antoinemadec/FixCursorHold.nvim",
-		{
-			"nvim-treesitter/nvim-treesitter",
-			branch = "main",
-			build = function()
-				vim.cmd([[:TSUpdate go]])
-			end,
-		},
 		-- adapaters
 		-- "nvim-neotest/neotest-go",
 		"fredrikaverpil/neotest-golang",
