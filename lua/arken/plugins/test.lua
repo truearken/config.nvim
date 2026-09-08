@@ -6,7 +6,20 @@ return {
 		"antoinemadec/FixCursorHold.nvim",
 		-- adapaters
 		-- "nvim-neotest/neotest-go",
-		"fredrikaverpil/neotest-golang",
+		{
+			"nvim-treesitter/nvim-treesitter", -- Optional, but recommended
+			branch = "main", -- NOTE; not the master branch!
+			build = function()
+				vim.cmd(":TSUpdate go")
+			end,
+		},
+		{
+			"fredrikaverpil/neotest-golang",
+			version = "*", -- Optional, but recommended; track releases
+			build = function()
+				vim.system({ "go", "install", "gotest.tools/gotestsum@latest" }):wait() -- Optional, but recommended
+			end,
+		},
 		-- coverage
 		"andythigpen/nvim-coverage",
 	},
@@ -20,14 +33,21 @@ return {
 			},
 		})
 
+		local function go_test_args()
+			local dir = vim.fn.expand("%:p:h")
+			local args = { "-v", "-count=1", "-coverprofile=/tmp/coverage.out" }
+			local res = vim.system({ "go", "list", "-m" }, { cwd = dir, text = true }):wait()
+			if res.code == 0 then
+				table.insert(args, "-coverpkg=" .. vim.trim(res.stdout) .. "/...")
+			end
+			return args
+		end
+
 		local neotest = require("neotest")
 		neotest.setup({
 			adapters = {
 				require("neotest-golang")({
-					go_test_args = {
-						"-coverpkg=`go mod edit -print | head -1 | sed -e 's/^\\w*\\ *//'`/... ",
-						"-coverprofile=/tmp/coverage.out",
-					},
+					go_test_args = go_test_args(),
 				}),
 			},
 		})
