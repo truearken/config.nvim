@@ -13,7 +13,7 @@ return {
 		"saadparwaiz1/cmp_luasnip",
 		"j-hui/fidget.nvim",
 		"stevearc/conform.nvim",
-		"mfussenegger/nvim-jdtls",
+		"nvim-java/nvim-java",
 	},
 	config = function()
 		local cmp = require("cmp")
@@ -34,6 +34,9 @@ return {
 			},
 		})
 
+		require("java").setup()
+		vim.lsp.enable("jdtls")
+
 		local lspconfig = require("lspconfig")
 		require("mason-lspconfig").setup({
 			ensure_installed = {
@@ -42,7 +45,6 @@ return {
 				"ts_ls",
 				"lemminx",
 				"yamlls",
-				"jdtls",
 			},
 			handlers = {
 				function(server_name) -- default handler (optional)
